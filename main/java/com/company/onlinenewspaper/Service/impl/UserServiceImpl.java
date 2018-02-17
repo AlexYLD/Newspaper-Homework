@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     public User getByUsernameAndPassword(LoginRequest request) {
         User user = userRepository.getByUsername(request.getUsername());
         if (user != null && !user.getPassword().equals(request.getPassword())) {
-            return null;
+            throw new RuntimeException("No such user");
         }
         return user;
     }
